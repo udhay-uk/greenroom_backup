@@ -22,7 +22,10 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
 }));
 
-const LoginScreen: React.FC = ({}) => {
+interface LoginScreenProps {
+  onLogin: () => void;
+}
+const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -189,6 +192,7 @@ const LoginScreen: React.FC = ({}) => {
               color="primary"
               size="large"
               sx={{ mt: 3, mb: 2 }}
+              onClick={onLogin}
             >
               Sign in
             </Button>
