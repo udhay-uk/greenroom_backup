@@ -20,7 +20,6 @@ import {
   IconButton,
   LinearProgress,
   Chip,
-  Paper,
   Container,
   Stack
 } from '@mui/material';
@@ -51,7 +50,7 @@ const DashboardSetup: React.FC = () => {
       status: 'completed', 
       description: 'Basic company details are set up',
       icon: Building,
-      path: '/pages/CompanyInformation'
+      path: '/src/pages/CompanyInformation'
     },
     { 
       id: 'unions', 
@@ -59,7 +58,7 @@ const DashboardSetup: React.FC = () => {
       status: 'pending', 
       description: 'Configure union agreements and rates',
       icon: Users,
-      path: '/pages/UnionSetup'
+      path: '/src/pages/UnionSetup'
     },
     { 
       id: 'bank', 
@@ -67,7 +66,7 @@ const DashboardSetup: React.FC = () => {
       status: 'pending', 
       description: 'Connect your bank account for payments',
       icon: CreditCard,
-      path: '/pages/BankSetup'
+      path: '/src/pages/BankSetup'
     },
     { 
       id: 'signatures', 
@@ -75,7 +74,7 @@ const DashboardSetup: React.FC = () => {
       status: 'pending', 
       description: 'Upload signatures for checks and documents',
       icon: FileCheck,
-      path: '/pages/SignatureSetup'
+      path: '/src/pages/SignatureSetup'
     },
     { 
       id: 'documents', 
@@ -83,7 +82,7 @@ const DashboardSetup: React.FC = () => {
       status: 'pending', 
       description: 'Upload company documents and templates',
       icon: FileText,
-      path: '/setup/documents'
+      path: '/src/pages/Documents'
     },
     { 
       id: 'settings', 
@@ -97,9 +96,9 @@ const DashboardSetup: React.FC = () => {
   
   // Quick action buttons
   const quickActions: QuickAction[] = [
-    { name: 'Add Payee', icon: PlusCircle, href: '/payees/new' },
-    { name: 'Setup Bank', icon: CreditCard, href: '/setup/bank' },
-    { name: 'Upload Signature', icon: FileCheck, href: '/setup/signatures' },
+    { name: 'Add Payee', icon: PlusCircle, href: '/src/pages/SelectPayee' },
+    { name: 'Setup Bank', icon: CreditCard, href: '/src/pages/SetupUnion' },
+    { name: 'Upload Signature', icon: FileCheck, href: '/src/pages/SignatureSetup' },
     { name: 'Notification Settings', icon: Bell, href: '/settings/notifications' }
   ];
   

@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   CircularProgress,
-  Divider,
   FormControl,
   FormHelperText,
   IconButton,
@@ -15,7 +14,6 @@ import {
   TextField,
   Typography,
   Alert,
-  Avatar
 } from '@mui/material';
 
 interface PasswordStrength {

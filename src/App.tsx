@@ -19,7 +19,6 @@ import {
   CssBaseline,
   Avatar,
   Stack,
-  Paper,
 } from "@mui/material";
 import BusinessIcon from "@mui/icons-material/Business";
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -29,7 +28,6 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import SettingsIcon from "@mui/icons-material/Settings";
-import MenuIcon from "@mui/icons-material/Menu";
 import CompanyInformation from "./pages/CompanyInformation";
 import DashboardSetup from "./pages/DashboardSetup";
 import PayeeOnboardingSystem from "./pages/PayeeOnboardingSystem";
@@ -41,6 +39,7 @@ import AccountActivation from "./pages/AccountActivation";
 import MFAScreen from "./pages/MFAScreen";
 import TermsReview from "./pages/TermsReview";
 import VendorPaymentsWireframe from "./pages/VendorPayments";
+import LoginScreen from "./pages/LoginScreen";
 
 const drawerWidth = 240;
 
@@ -54,11 +53,6 @@ const App: React.FC = () => {
   };
 
   const navigationItems = [
-    {
-      label: "Company",
-      icon: <BusinessIcon />,
-      path: "/src/pages/CompanyInformation",
-    },
     {
       label: "Dashboard",
       icon: <DashboardIcon />,
@@ -89,17 +83,7 @@ const App: React.FC = () => {
       icon: <BarChartIcon />,
       path: "/src/pages/ReportsWireframe",
     },
-    {
-      label: "MFAScreen",
-      icon: <SettingsIcon />,
-      path: "/src/pages/MFAScreen",
-    },
-    {
-      label: "Account Activation",
-      icon: <SettingsIcon />,
-      path: "/src/pages/AccountActivation",
-    },
-    
+ 
   ];
 
   return (
@@ -189,6 +173,7 @@ const App: React.FC = () => {
             path="/src/pages/CompanyInformation"
             element={<CompanyInformation />}
           />
+          <Route path="/src/pages/LoginScreen" element={<LoginScreen />} />
           <Route
             path="/src/pages/DashboardSetup"
             element={<DashboardSetup />}
@@ -213,15 +198,16 @@ const App: React.FC = () => {
             path="/src/pages/AccountActivation"
             element={<AccountActivation />}
           />
-           <Route
+          <Route
             path="/src/pages/MFAScreen"
-            element={<MFAScreen />}
+            element={
+              <MFAScreen
+               
+              />
+            }
           />
-           <Route
-            path="/src/pages/TermsReview"
-            element={<TermsReview />}
-          />
-           <Route
+          <Route path="/src/pages/TermsReview" element={<TermsReview />} />
+          <Route
             path="/src/pages/VendorPaymentsWireframe"
             element={<VendorPaymentsWireframe />}
           />

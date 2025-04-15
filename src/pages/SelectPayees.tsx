@@ -6,7 +6,6 @@ import {
   Checkbox,
   Avatar,
   Stack,
-  FormControlLabel,
   Paper,
 } from "@mui/material";
 import { Search, User } from "lucide-react";

@@ -19,7 +19,6 @@ import {
   TableRow,
   Stack,
   Chip,
-  Avatar,
   Collapse,
   IconButton,
   Alert

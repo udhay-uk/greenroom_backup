@@ -17,7 +17,6 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import AdminUserDetails from "./AdminUserDetails";
-import PayrollDetails from "./PayrollDetails";
 
 interface FormData {
   entityName: string;
@@ -182,7 +181,7 @@ const CompanyInformation: React.FC = () => {
   return (
     <>
       {showAddUserDetails ? (
-        <PayrollDetails />
+          <AdminUserDetails />
       ) : (
         <StyledPaper>
           <Box mb={4}>
@@ -190,7 +189,7 @@ const CompanyInformation: React.FC = () => {
               Registration
             </Typography>
             <Typography variant="subtitle1" color="textSecondary" gutterBottom>
-              Step 1 of 3: Company Information
+              Step 1 of 4: Company Information
             </Typography>
             <LinearProgress
               variant="determinate"
@@ -439,7 +438,7 @@ const CompanyInformation: React.FC = () => {
                 endIcon={<ChevronRight size={20} />}
                 sx={{ px: 3, py: 1.5 }}
               >
-                Next: Payroll Details
+                Next: Admin Info
               </Button>
             </Box>
           </form>

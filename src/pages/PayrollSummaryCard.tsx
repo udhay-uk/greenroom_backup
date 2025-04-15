@@ -6,7 +6,6 @@ import {
   AlertCircle,
   DollarSign,
   Check,
-  X,
 } from "lucide-react";
 import {
   Box,
@@ -17,7 +16,6 @@ import {
   Checkbox,
   CircularProgress,
   Container,
-  Divider,
   FormControl,
   Grid,
   InputLabel,
