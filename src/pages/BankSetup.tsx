@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  ChevronLeft,
   Save,
   Info,
   ErrorOutline, // Replacing AlertCircle with ErrorOutline
@@ -8,7 +7,6 @@ import {
   Visibility,
   VisibilityOff,
   Check,
-  Close,
 } from "@mui/icons-material";
 import {
   Box,
@@ -23,7 +21,6 @@ import {
   IconButton,
   InputAdornment,
   InputLabel,
-  Link,
   List,
   ListItem,
   ListItemButton,
@@ -95,9 +92,11 @@ const BankSetup: React.FC = () => {
   ];
 
   const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    > | SelectChangeEvent<string>
+    e:
+      | React.ChangeEvent<
+          HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        >
+      | SelectChangeEvent<string>
   ) => {
     const { name, value, type } = e.target as HTMLInputElement;
     const checked = (e.target as HTMLInputElement).checked;
@@ -372,7 +371,9 @@ const BankSetup: React.FC = () => {
                     id="accountNumber"
                     name="accountNumber"
                     value={formData.accountNumber}
-                    onChange={(e) => handleInputChange(e as SelectChangeEvent<string>)}
+                    onChange={(e) =>
+                      handleInputChange(e as SelectChangeEvent<string>)
+                    }
                     error={!!errors.accountNumber}
                     fullWidth
                     placeholder="Enter account number"

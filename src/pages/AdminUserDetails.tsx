@@ -15,9 +15,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { ChevronRight, ChevronLeft, Info } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import PayrollDetails from "./PayrollDetails"; // Import PayrollDetails
-import MFAScreen from "./MFAScreen";
 
 interface FormData {
   firstName: string;

@@ -16,7 +16,6 @@ import {
   Stack,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
 import CompanyInformation from "./CompanyInformation";
 
 const StyledPaper = styled(Paper)(({ theme }) => ({

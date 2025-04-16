@@ -16,7 +16,6 @@ import {
   Stack,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import AdminUserDetails from "./AdminUserDetails";
 import PayrollDetails from "./PayrollDetails";
 
 interface FormData {

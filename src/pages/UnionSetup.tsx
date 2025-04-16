@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Users,
-  ChevronLeft,
-  ChevronDown,
-  ChevronUp,
-  Save,
-  Check,
-} from "lucide-react";
+import { Users, ChevronDown, ChevronUp, Save, Check } from "lucide-react";
 import {
   Box,
   Button,

@@ -12,7 +12,6 @@ import {
   Divider,
 } from "@mui/material";
 import { ChevronLeft, Check, Download } from "lucide-react";
-import AccountActivation from "./AccountActivation";
 
 interface Agreement {
   id: keyof Agreements;
@@ -121,8 +120,6 @@ const TermsReview: React.FC = () => {
 
   const allAgreementsAccepted =
     Object.values(acceptedAgreements).every(Boolean);
-
-
 
   return (
     <Box maxWidth="md" mx="auto" p={3} component={Paper} elevation={3}>

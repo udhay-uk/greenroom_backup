@@ -16,7 +16,6 @@ import {
   InputAdornment,
   Switch,
   Stack,
-  IconButton,
   FormControl,
 } from '@mui/material';
 import AttachFileIcon from '@mui/icons-material/AttachFile';

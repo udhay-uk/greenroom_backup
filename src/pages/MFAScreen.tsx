@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   Mail as MailIcon,
   ArrowLeft as ArrowLeftIcon,
@@ -14,7 +13,6 @@ import {
   Alert,
   CircularProgress,
 } from "@mui/material";
-import CompanyInformation from "./CompanyInformation";
 import PayrollDetails from "./PayrollDetails";
 
 const MFAScreen: React.FC = () => {
