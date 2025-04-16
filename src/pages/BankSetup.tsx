@@ -227,15 +227,14 @@ const BankSetup: React.FC = () => {
           py: 4,
         }}
       >
-        <Box sx={{ mb: 3 }}>
+        {/* <Box sx={{ mb: 3 }}>
           <Link
-            href="/dashboard"
             sx={{ display: "inline-flex", alignItems: "center" }}
           >
             <ChevronLeft sx={{ mr: 0.5 }} fontSize="small" />
             Back to Dashboard
           </Link>
-        </Box>
+        </Box> */}
 
         <Card>
           <CardHeader

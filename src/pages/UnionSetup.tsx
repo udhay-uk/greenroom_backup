@@ -240,7 +240,7 @@ const UnionSetup: React.FC = () => {
       <Box
         sx={{ maxWidth: "md", mx: "auto", px: { xs: 2, sm: 3, md: 4 }, py: 4 }}
       >
-        <Box mb={3}>
+        {/* <Box mb={3}>
           <Button
             startIcon={<ChevronLeft size={20} />}
             href="/dashboard"
@@ -248,7 +248,7 @@ const UnionSetup: React.FC = () => {
           >
             Back to Dashboard
           </Button>
-        </Box>
+        </Box> */}
 
         <StyledCard>
           <CardHeader

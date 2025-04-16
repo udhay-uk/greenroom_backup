@@ -239,7 +239,7 @@ const RunPayrollSimple: React.FC = () => {
   return (
     <Box sx={{ backgroundColor: grey[50], minHeight: "100vh" }}>
       <Container maxWidth="xl" sx={{ py: 4 }}>
-        <Box sx={{ mb: 3 }}>
+        {/* <Box sx={{ mb: 3 }}>
           <Link
             href="/dashboard"
             color="primary"
@@ -248,7 +248,7 @@ const RunPayrollSimple: React.FC = () => {
             <ChevronLeft size={16} style={{ marginRight: 4 }} />
             Back to Dashboard
           </Link>
-        </Box>
+        </Box> */}
 
         <Box sx={{ textAlign: "center", mb: 4 }}>
           <Typography variant="h4" fontWeight="bold" gutterBottom>

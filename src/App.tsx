@@ -20,26 +20,27 @@ import {
   Avatar,
   Stack,
 } from "@mui/material";
-import BusinessIcon from "@mui/icons-material/Business";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import BarChartIcon from "@mui/icons-material/BarChart";
-import SettingsIcon from "@mui/icons-material/Settings";
 import CompanyInformation from "./pages/CompanyInformation";
 import DashboardSetup from "./pages/DashboardSetup";
 import PayeeOnboardingSystem from "./pages/PayeeOnboardingSystem";
 import AdminTimesheetEntry from "./pages/AdminTimesheetEntry";
 import RunPayrollSimple from "./pages/PayrollSummaryCard";
-import { Bell } from "lucide-react";
+import { Bell, Settings2Icon, SettingsIcon } from "lucide-react";
 import ReportsWireframe from "./pages/Reports";
 import AccountActivation from "./pages/AccountActivation";
 import MFAScreen from "./pages/MFAScreen";
 import TermsReview from "./pages/TermsReview";
 import VendorPaymentsWireframe from "./pages/VendorPayments";
-import LoginScreen from "./pages/LoginScreen";
+import UnionSetup from "./pages/UnionSetup";
+import SignatureSetup from "./pages/SignatureSetup";
+import BankSetup from "./pages/BankSetup";
+import PayrollFlowSummary from "./pages/ParrollFlowSummary";
 
 const drawerWidth = 240;
 
@@ -83,7 +84,16 @@ const App: React.FC = () => {
       icon: <BarChartIcon />,
       path: "/src/pages/ReportsWireframe",
     },
- 
+    {
+      label: "Run Payrll",
+      icon: <Settings2Icon />,
+      path: "/src/pages/VendorPayments",
+    },
+    {
+      label: "Settings",
+      icon: <SettingsIcon />,
+      path: "",
+    }
   ];
 
   return (
@@ -173,7 +183,18 @@ const App: React.FC = () => {
             path="/src/pages/CompanyInformation"
             element={<CompanyInformation />}
           />
-          <Route path="/src/pages/LoginScreen" element={<LoginScreen />} />
+          <Route
+            path="/src/pages/UnionSetup"
+            element={<UnionSetup />}
+          />
+           <Route
+            path="/src/pages/SignatureSetup"
+            element={<SignatureSetup />}
+          />
+            <Route
+            path="/src/pages/BankSetup"
+            element={<BankSetup />}
+          />
           <Route
             path="/src/pages/DashboardSetup"
             element={<DashboardSetup />}
@@ -209,6 +230,10 @@ const App: React.FC = () => {
           <Route path="/src/pages/TermsReview" element={<TermsReview />} />
           <Route
             path="/src/pages/VendorPaymentsWireframe"
+            element={<VendorPaymentsWireframe />}
+          />
+          <Route
+            path="/src/pages/VendorPayments"
             element={<VendorPaymentsWireframe />}
           />
         </Routes>

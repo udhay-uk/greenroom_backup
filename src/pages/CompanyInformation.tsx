@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AlertCircle, ChevronRight, Info } from "lucide-react";
+import { AlertCircle, ChevronLeft, ChevronRight, Info } from "lucide-react";
 import {
   Box,
   Button,
@@ -185,6 +185,15 @@ const CompanyInformation: React.FC = () => {
         <PayrollDetails />
       ) : (
         <StyledPaper>
+          <Box sx={{ mb: 3 }}>
+            <Button
+              href="/dashboard"
+              startIcon={<ChevronLeft size={20} />}
+              sx={{ textTransform: "none" }}
+            >
+              Back to Dashboard
+            </Button>
+          </Box>
           <Box mb={4}>
             <Typography variant="h4" component="h1" gutterBottom>
               Registration

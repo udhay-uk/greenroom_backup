@@ -334,7 +334,7 @@ const SignatureSetup: React.FC = () => {
         px: { xs: 2, sm: 3, lg: 4 },
         py: 4
       }}>
-        <Box sx={{ mb: 3 }}>
+        {/* <Box sx={{ mb: 3 }}>
           <Button 
             href="/dashboard" 
             startIcon={<ChevronLeft size={20} />}
@@ -342,7 +342,7 @@ const SignatureSetup: React.FC = () => {
           >
             Back to Dashboard
           </Button>
-        </Box>
+        </Box> */}
         
         <Card>
           <CardHeader
