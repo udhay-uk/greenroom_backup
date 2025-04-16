@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -56,45 +56,44 @@ const App: React.FC = () => {
     {
       label: "Dashboard",
       icon: <DashboardIcon />,
-      path: "/src/pages/DashboardSetup",
+      path: "/dashboard", // Changed from "/src/pages/DashboardSetup"
     },
     {
       label: "Payees",
       icon: <PeopleIcon />,
-      path: "/src/pages/PayeeOnboardingSystem",
+      path: "/payees", // Changed from "/src/pages/PayeeOnboardingSystem"
     },
     {
       label: "Timesheets",
       icon: <ScheduleIcon />,
-      path: "/src/pages/AdminTimesheetEntry",
+      path: "/timesheets", // Changed from "/src/pages/AdminTimesheetEntry"
     },
     {
       label: "Payroll",
       icon: <AttachMoneyIcon />,
-      path: "/src/pages/RunPayrollSimple",
+      path: "/payroll", // Changed from "/src/pages/RunPayrollSimple"
     },
     {
       label: "Taxes",
       icon: <AccountBalanceIcon />,
-      path: "/src/pages/AdminTimesheetEntry",
+      path: "/taxes", // Changed from "/src/pages/AdminTimesheetEntry"
     },
     {
       label: "Reports",
       icon: <BarChartIcon />,
-      path: "/src/pages/ReportsWireframe",
+      path: "/reports", // Changed from "/src/pages/ReportsWireframe"
     },
     {
-      label: "Run Payrll",
+      label: "Run Payroll",
       icon: <Settings2Icon />,
-      path: "/src/pages/VendorPayments",
+      path: "/vendor-payments", // Changed from "/src/pages/VendorPayments"
     },
     {
       label: "Settings",
       icon: <SettingsIcon />,
-      path: "",
-    }
+      path: "/settings",
+    },
   ];
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -178,63 +177,24 @@ const App: React.FC = () => {
       >
         <Toolbar />
         <Routes>
+          <Route path="/dashboard" element={<DashboardSetup />} />
+          <Route path="/payees" element={<PayeeOnboardingSystem />} />
+          <Route path="/timesheets" element={<AdminTimesheetEntry />} />
+          <Route path="/payroll" element={<RunPayrollSimple />} />
+          <Route path="/taxes" element={<AdminTimesheetEntry />} />
+          <Route path="/reports" element={<ReportsWireframe />} />
           <Route
-            path="/src/pages/CompanyInformation"
-            element={<CompanyInformation />}
-          />
-          <Route
-            path="/src/pages/UnionSetup"
-            element={<UnionSetup />}
-          />
-           <Route
-            path="/src/pages/SignatureSetup"
-            element={<SignatureSetup />}
-          />
-            <Route
-            path="/src/pages/BankSetup"
-            element={<BankSetup />}
-          />
-          <Route
-            path="/src/pages/DashboardSetup"
-            element={<DashboardSetup />}
-          />
-          <Route
-            path="/src/pages/PayeeOnboardingSystem"
-            element={<PayeeOnboardingSystem />}
-          />
-          <Route
-            path="/src/pages/AdminTimesheetEntry"
-            element={<AdminTimesheetEntry />}
-          />
-          <Route
-            path="/src/pages/RunPayrollSimple"
-            element={<RunPayrollSimple />}
-          />
-          <Route
-            path="/src/pages/ReportsWireframe"
-            element={<ReportsWireframe />}
-          />
-          <Route
-            path="/src/pages/AccountActivation"
-            element={<AccountActivation />}
-          />
-          <Route
-            path="/src/pages/MFAScreen"
-            element={
-              <MFAScreen
-               
-              />
-            }
-          />
-          <Route path="/src/pages/TermsReview" element={<TermsReview />} />
-          <Route
-            path="/src/pages/VendorPaymentsWireframe"
+            path="/vendor-payments"
             element={<VendorPaymentsWireframe />}
           />
-          <Route
-            path="/src/pages/VendorPayments"
-            element={<VendorPaymentsWireframe />}
-          />
+          <Route path="/company-information" element={<CompanyInformation />} />
+          <Route path="/union-setup" element={<UnionSetup />} />
+          <Route path="/signature-setup" element={<SignatureSetup />} />
+          <Route path="/bank-setup" element={<BankSetup />} />
+          <Route path="/account-activation" element={<AccountActivation />} />
+          <Route path="/mfa" element={<MFAScreen />} />
+          <Route path="/terms" element={<TermsReview />} />
+          {/* Add a default route */}
         </Routes>
       </Box>
     </Box>

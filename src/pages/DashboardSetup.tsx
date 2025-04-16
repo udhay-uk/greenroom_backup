@@ -59,7 +59,7 @@ const DashboardSetup: React.FC = () => {
       status: "completed",
       description: "Basic company details are set up",
       icon: Building,
-      path: "/src/pages/CompanyInformation",
+      path: "/company-information",
     },
     {
       id: "unions",
@@ -67,7 +67,7 @@ const DashboardSetup: React.FC = () => {
       status: "pending",
       description: "Configure union agreements and rates",
       icon: Users,
-      path: "/src/pages/UnionSetup",
+      path: "/union-setup",
     },
     {
       id: "bank",
@@ -75,7 +75,7 @@ const DashboardSetup: React.FC = () => {
       status: "pending",
       description: "Connect your bank account for payments",
       icon: CreditCard,
-      path: "/src/pages/BankSetup",
+      path: "/bank-setup",
     },
     {
       id: "signatures",
@@ -83,7 +83,7 @@ const DashboardSetup: React.FC = () => {
       status: "pending",
       description: "Upload signatures for checks and documents",
       icon: FileCheck,
-      path: "/src/pages/SignatureSetup",
+      path: "/signature-setup",
     },
     {
       id: "documents",
@@ -105,12 +105,12 @@ const DashboardSetup: React.FC = () => {
 
   // Quick action buttons
   const quickActions: QuickAction[] = [
-    { name: "Add Payee", icon: PlusCircle, href: "/src/pages/SelectPayee" },
-    { name: "Setup Bank", icon: CreditCard, href: "/src/pages/SetupUnion" },
+    { name: "Add Payee", icon: PlusCircle, href: "/" },
+    { name: "Setup Bank", icon: CreditCard, href: "/" },
     {
       name: "Upload Signature",
       icon: FileCheck,
-      href: "/src/pages/SignatureSetup",
+      href: "/",
     },
     {
       name: "Notification Settings",

@@ -184,7 +184,7 @@ const CompanyInformation: React.FC = () => {
         <PayrollDetails />
       ) : (
         <StyledPaper>
-          <Box sx={{ mb: 3 }}>
+          {/* <Box sx={{ mb: 3 }}>
             <Button
               href="/dashboard"
               startIcon={<ChevronLeft size={20} />}
@@ -192,7 +192,7 @@ const CompanyInformation: React.FC = () => {
             >
               Back to Dashboard
             </Button>
-          </Box>
+          </Box> */}
           <Box mb={4}>
             <Typography variant="h4" component="h1" gutterBottom>
               Registration
