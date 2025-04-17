@@ -63,7 +63,7 @@ const UnionSetup: React.FC = () => {
   const [showUnionSection, setShowUnionSection] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
-
+  console.log("formData", saveSuccess);
   // Options for form selects
   const unionOptions: Option[] = [
     { value: "aea", label: "Actor's Equity Association" },
@@ -181,55 +181,72 @@ const UnionSetup: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (validateForm()) {
-      setIsSaving(true);
+    // Validate the form first
+    if (!validateForm()) {
+      return;
+    }
 
-      // Simulate API call
-      setTimeout(() => {
-        setSaveSuccess(true);
-        setIsSaving(false);
+    setIsSaving(true);
+    setSaveSuccess(false);
 
-        // Reset success message after a delay
-        setTimeout(() => {
-          setSaveSuccess(false);
-        }, 3000);
+    try {
+      // Prepare the data to be saved
+      const submissionData = {
+        hasUnionProduction,
+        ...(hasUnionProduction ? formData : {}), // Only include union data if it's a union production
+      };
 
-        console.log("Form submitted with data:", {
-          hasUnionProduction,
-          ...formData,
-        });
-      }, 1500);
+      // Simulate API call (replace with real API call in production)
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // Handle success
+      setSaveSuccess(true);
+
+      // Reset form values after successful save
+      setHasUnionProduction(null);
+      setFormData({
+        union: "",
+        agreementType: "",
+        productionType: "",
+        tier: "",
+        aeaEmployerId: "",
+        aeaProductionTitle: "",
+        aeaBusinessRep: "",
+      });
+      setErrors({});
+
+      console.log("Form submitted with data:", submissionData);
+    } catch (error) {
+      console.error("Error saving union settings:", error);
+      // You might want to show an error message here
+    } finally {
+      setIsSaving(false);
     }
   };
 
+  // Optional: Add this if you want to reset the form after submission
+  const resetForm = () => {
+    setHasUnionProduction(null);
+    setFormData({
+      union: "",
+      agreementType: "",
+      productionType: "",
+      tier: "",
+      aeaEmployerId: "",
+      aeaProductionTitle: "",
+      aeaBusinessRep: "",
+    });
+    setErrors({});
+  };
   const is29HourReading = formData.agreementType === "29_hour";
   const isDevelopmental = formData.agreementType === "developmental";
   const isOffBroadway = formData.agreementType === "off_broadway";
 
   return (
     <Box sx={{ backgroundColor: "grey.50", minHeight: "100vh" }}>
-      <Paper elevation={3} sx={{ mb: 2 }}>
-        <Box
-          sx={{
-            maxWidth: "lg",
-            mx: "auto",
-            px: { xs: 2, sm: 3, md: 4 },
-            py: 2,
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Typography variant="h6" fontWeight="bold">
-            Greenroom Payroll
-          </Typography>
-          <Avatar sx={{ bgcolor: "primary.main" }}>JS</Avatar>
-        </Box>
-      </Paper>
-
       <Box
         sx={{ maxWidth: "md", mx: "auto", px: { xs: 2, sm: 3, md: 4 }, py: 4 }}
       >
@@ -259,31 +276,23 @@ const UnionSetup: React.FC = () => {
             <form onSubmit={handleSubmit}>
               <Stack spacing={4}>
                 {/* Union Production Toggle */}
-                <Box>
-                  <Typography variant="subtitle2" gutterBottom>
-                    Is this a union production?
-                  </Typography>
-                  <Stack direction="row" spacing={2}>
-                    <Button
-                      variant={
-                        hasUnionProduction === true ? "contained" : "outlined"
-                      }
-                      onClick={() => handleUnionToggle(true)}
-                      sx={{ textTransform: "none" }}
-                    >
-                      Yes
-                    </Button>
-                    <Button
-                      variant={
-                        hasUnionProduction === false ? "contained" : "outlined"
-                      }
-                      onClick={() => handleUnionToggle(false)}
-                      sx={{ textTransform: "none" }}
-                    >
-                      No
-                    </Button>
-                  </Stack>
-                </Box>
+
+                <Stack
+                  direction="row"
+                  display="flext"
+                  alignContent="right"
+                  spacing={2}
+                >
+                  <Button
+                    variant={
+                      hasUnionProduction === true ? "contained" : "outlined"
+                    }
+                    onClick={() => handleUnionToggle(true)}
+                    sx={{ textTransform: "none" }}
+                  >
+                    Create New
+                  </Button>
+                </Stack>
 
                 {/* Union Fields - Only shown if union production is selected */}
                 {hasUnionProduction && (
@@ -533,7 +542,12 @@ const UnionSetup: React.FC = () => {
                 {/* Form Actions */}
                 <Divider />
                 <Box display="flex" justifyContent="flex-end" pt={2}>
-                  <Button type="button" variant="outlined" sx={{ mr: 2 }}>
+                  <Button
+                    type="button"
+                    variant="outlined"
+                    sx={{ mr: 2 }}
+                    onClick={resetForm}
+                  >
                     Cancel
                   </Button>
                   <Button

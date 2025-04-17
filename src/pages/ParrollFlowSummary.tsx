@@ -23,6 +23,7 @@ import {
   IconButton,
   Alert
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 // Types
 interface Payee {
@@ -99,6 +100,7 @@ const PayrollFlowSummary: React.FC = () => {
   
   const [payrollData] = useState<PayrollData>(mockPayrollData);
   const totals = calculateTotals(payrollData);
+  const navigate = useNavigate();
   
   const toggleSection = (section: keyof ExpandedSections) => {
     setExpandedSections(prev => ({
@@ -378,7 +380,8 @@ const PayrollFlowSummary: React.FC = () => {
         </Button>
         <Button 
           variant="contained"
-          disabled={!allApproved}
+          disabled={allApproved}
+          onClick={()=>navigate('/history')}
         >
           Submit Payroll
         </Button>

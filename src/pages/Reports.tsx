@@ -58,7 +58,7 @@ const ReportsWireframe: React.FC = () => {
     { id: 'payroll', name: 'Payroll Register', icon: <FileTextIcon fontSize="small" /> },
     { id: 'union', name: 'Union Reports', icon: <FileTextIcon fontSize="small" /> },
     { id: 'tax', name: 'Tax Filings', icon: <FileTextIcon fontSize="small" /> },
-    { id: 'paystub', name: 'Pay Stubs (Individual)', icon: <FileTextIcon fontSize="small" /> }
+    { id: 'paystub', name: 'Pay Stubs', icon: <FileTextIcon fontSize="small" /> }
   ];
   
   const getFilterSection = () => {
@@ -524,10 +524,11 @@ const ReportsWireframe: React.FC = () => {
                     borderRadius: 1,
                     '&.Mui-selected': {
                       bgcolor: 'primary.light',
-                      color: 'primary.main',
+                      color: 'white',
                     },
                     '&.Mui-selected:hover': {
                       bgcolor: 'primary.light',
+                      color:'white'
                     },
                   }}
                 >

@@ -27,6 +27,7 @@ import {
 } from "@mui/material";
 import SelectPayees from "./SelectPayees";
 import PayrollFlowSummary from "./ParrollFlowSummary";
+import RunPayrollSimple from "./PayrollSummaryCard";
 
 type PaymentMethod = "ACH" | "Check";
 
@@ -148,7 +149,6 @@ export default function VendorPaymentsWireframe() {
         </IconButton>
       </Box>
 
-      {/* ... (NewVendorForm content remains the same) */}
       <Stack direction="row" spacing={2} mb={2}>
         <TextField
           fullWidth
@@ -279,6 +279,7 @@ export default function VendorPaymentsWireframe() {
   };
 
   const stepLabels = [
+    "Pay Period",
     "Select Payees",
     "Vendors & One-off Payments",
     "Review & Process",
@@ -301,7 +302,7 @@ export default function VendorPaymentsWireframe() {
             Run Payroll
           </Typography>
           <Tabs value={activeStep - 1} aria-label="payroll steps">
-            {stepLabels.map((label, index) => (
+            {stepLabels.map((label) => (
               <Tab key={label} label={label} />
             ))}
           </Tabs>
@@ -311,8 +312,9 @@ export default function VendorPaymentsWireframe() {
       {/* Main Content */}
       <Box maxWidth="xl" sx={{ mx: "auto", py: 3, px: 3 }}>
         {/* Tab Content */}
-        {activeStep === 1 && <SelectPayees />}
-        {activeStep === 2 && (
+        {activeStep === 1 && <RunPayrollSimple />}
+        {activeStep === 2 && <SelectPayees />}
+        {activeStep === 3 && (
           <>
             {/* Toolbar */}
             <Box
@@ -455,7 +457,7 @@ export default function VendorPaymentsWireframe() {
             </Box>
           </>
         )}
-        {activeStep === 3 && <PayrollFlowSummary />}
+        {activeStep === 4 && <PayrollFlowSummary />}
 
         {/* Action Buttons */}
         <Box mt={3} sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -472,7 +474,7 @@ export default function VendorPaymentsWireframe() {
               variant="contained"
               endIcon={<ArrowRight size={16} />}
               onClick={handleNext}
-              disabled={activeStep === 3}
+              disabled={activeStep === 4}
             >
               Next Step
             </Button>

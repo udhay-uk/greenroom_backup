@@ -39,6 +39,7 @@ import {
   stepConnectorClasses,
 } from "@mui/material";
 import { green, blue, yellow, grey, red } from "@mui/material/colors";
+import { useNavigate } from "react-router-dom";
 
 interface PayPeriod {
   id: string;
@@ -122,6 +123,7 @@ const RunPayrollSimple: React.FC = () => {
   const [selectedPayees, setSelectedPayees] = useState<number[]>([]);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submissionSuccess, setSubmissionSuccess] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   // Sample payroll periods
   const payPeriods: PayPeriod[] = [
@@ -221,23 +223,15 @@ const RunPayrollSimple: React.FC = () => {
 
   const handleSubmitPayroll = () => {
     setIsSubmitting(true);
-
-    // Simulate API call
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmissionSuccess(true);
-
-      // In a real app, you would redirect to a confirmation page
-      console.log("Payroll submitted successfully!", {
-        payPeriod,
-        selectedPayees,
-        payeesData: payees.filter((payee) => selectedPayees.includes(payee.id)),
-      });
-    }, 2000);
+      // Navigate to history after delay
+      setTimeout(() => navigate("/history"), 20);
+    }, 200);
   };
 
   return (
-    <Box sx={{ backgroundColor: grey[50], minHeight: "100vh" }}>
       <Container maxWidth="xl" sx={{ py: 4 }}>
         {/* <Box sx={{ mb: 3 }}>
           <Link
@@ -250,46 +244,12 @@ const RunPayrollSimple: React.FC = () => {
           </Link>
         </Box> */}
 
-        <Box sx={{ textAlign: "center", mb: 4 }}>
-          <Typography variant="h4" fontWeight="bold" gutterBottom>
-            Run Payroll
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Create a new payroll run for your production
-          </Typography>
-        </Box>
+        
+        
 
-        {/* Steps Indicator */}
-        <Box sx={{ mb: 6 }}>
-          <Stepper
-            alternativeLabel
-            activeStep={currentStep - 1}
-            connector={<CustomConnector />}
-          >
-            {steps.map((label, index) => (
-              <Step key={label}>
-                <StepLabel
-                  StepIconComponent={ColorlibStepIcon}
-                  sx={{
-                    "& .MuiStepLabel-label": {
-                      color:
-                        currentStep - 1 >= index ? blue[600] : grey[500],
-                      fontWeight: "medium",
-                    },
-                  }}
-                >
-                  {label}
-                </StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-        </Box>
-
-        {/* Step 1: Select Payees */}
-        {currentStep === 1 && (
           <Card sx={{ mb: 3 }}>
             <CardHeader
-              title="Select Pay Period and Payees"
+              title="Select Pay Period"
               titleTypographyProps={{ variant: "h6" }}
               sx={{ borderBottom: `1px solid ${grey[200]}` }}
             />
@@ -454,207 +414,10 @@ const RunPayrollSimple: React.FC = () => {
                 </>
               )}
             </CardContent>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-                p: 2,
-                backgroundColor: grey[50],
-              }}
-            >
-              <Button
-                variant="contained"
-                onClick={handleNextStep}
-                disabled={!payPeriod || selectedPayees.length === 0}
-                endIcon={<ChevronRight size={16} />}
-              >
-                Next Step
-              </Button>
-            </Box>
+            
           </Card>
-        )}
 
-        {/* Step 2: Review & Submit */}
-        {currentStep === 2 && (
-          <>
-            <Card sx={{ mb: 3 }}>
-              <CardHeader
-                title="Review Payroll"
-                titleTypographyProps={{ variant: "h6" }}
-                sx={{ borderBottom: `1px solid ${grey[200]}` }}
-              />
-              <CardContent>
-                <Box sx={{ mb: 4 }}>
-                  <Typography variant="subtitle2" gutterBottom>
-                    Pay Period
-                  </Typography>
-                  <Paper variant="outlined" sx={{ p: 2, bgcolor: grey[50] }}>
-                    <Typography fontWeight="medium">
-                      {payPeriods.find((p) => p.id === payPeriod)?.label}
-                    </Typography>
-                  </Paper>
-                </Box>
-
-                <Box sx={{ mb: 4 }}>
-                  <Typography variant="subtitle2" gutterBottom>
-                    Selected Payees ({selectedPayees.length})
-                  </Typography>
-                  <TableContainer component={Paper} variant="outlined">
-                    <Table>
-                      <TableHead sx={{ backgroundColor: grey[50] }}>
-                        <TableRow>
-                          <TableCell>Name</TableCell>
-                          <TableCell>Type</TableCell>
-                          <TableCell align="right">Amount</TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {payees
-                          .filter((payee) => selectedPayees.includes(payee.id))
-                          .map((payee) => (
-                            <TableRow key={payee.id}>
-                              <TableCell>
-                                <Typography fontWeight="medium">
-                                  {payee.name}
-                                </Typography>
-                              </TableCell>
-                              <TableCell>
-                                <Typography color="text.secondary">
-                                  {payee.type}
-                                </Typography>
-                              </TableCell>
-                              <TableCell align="right">
-                                <Typography fontWeight="medium">
-                                  {formatCurrency(payee.payrollAmount)}
-                                </Typography>
-                              </TableCell>
-                            </TableRow>
-                          ))}
-
-                        <TableRow sx={{ backgroundColor: grey[50] }}>
-                          <TableCell colSpan={2} align="right">
-                            <Typography fontWeight="medium">Total:</Typography>
-                          </TableCell>
-                          <TableCell align="right">
-                            <Typography fontWeight="medium">
-                              {formatCurrency(getSelectedPayeesAmount())}
-                            </Typography>
-                          </TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                </Box>
-
-                <Box sx={{ mb: 4 }}>
-                  <Paper
-                    variant="outlined"
-                    sx={{
-                      p: 2,
-                      backgroundColor: blue[50],
-                      borderColor: blue[100],
-                    }}
-                  >
-                    <Grid container spacing={2}>
-                      <Grid item xs={12} sm="auto">
-                        <AlertCircle color={blue[400]} size={20} />
-                      </Grid>
-                      <Grid item xs={12} sm>
-                        <Typography
-                          variant="subtitle2"
-                          fontWeight="medium"
-                          color={blue[800]}
-                        >
-                          Important Note
-                        </Typography>
-                        <Typography variant="body2" color={blue[700]} mt={1}>
-                          By submitting this payroll, you authorize the payment
-                          of {formatCurrency(getSelectedPayeesAmount())} to the
-                          selected payees. This action cannot be undone after
-                          processing begins.
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Paper>
-                </Box>
-              </CardContent>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  p: 2,
-                  backgroundColor: grey[50],
-                }}
-              >
-                <Button
-                  variant="outlined"
-                  onClick={handlePreviousStep}
-                  startIcon={<ChevronLeft size={16} />}
-                >
-                  Previous Step
-                </Button>
-                <Button
-                  variant="contained"
-                  onClick={handleSubmitPayroll}
-                  disabled={isSubmitting}
-                  startIcon={
-                    isSubmitting ? (
-                      <CircularProgress size={16} color="inherit" />
-                    ) : (
-                      <DollarSign size={16} />
-                    )
-                  }
-                >
-                  {isSubmitting ? "Processing..." : "Submit Payroll"}
-                </Button>
-              </Box>
-            </Card>
-
-            {/* Success message */}
-            {submissionSuccess && (
-              <Paper
-                variant="outlined"
-                sx={{
-                  p: 2,
-                  backgroundColor: green[50],
-                  borderColor: green[100],
-                }}
-              >
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm="auto">
-                    <Check color={green[400]} size={20} />
-                  </Grid>
-                  <Grid item xs={12} sm>
-                    <Typography
-                      variant="subtitle2"
-                      fontWeight="medium"
-                      color={green[800]}
-                    >
-                      Payroll Submitted Successfully
-                    </Typography>
-                    <Typography variant="body2" color={green[700]} mt={1}>
-                      Your payroll has been submitted for processing. Payments
-                      will be issued according to your configured payment
-                      schedule.
-                    </Typography>
-                    <Box mt={2}>
-                      <Link
-                        href="/dashboard"
-                        color={green[800]}
-                        fontWeight="medium"
-                        underline="hover"
-                      >
-                        Return to Dashboard
-                      </Link>
-                    </Box>
-                  </Grid>
-                </Grid>
-              </Paper>
-            )}
-          </>
-        )}
       </Container>
-    </Box>
   );
 };
 

@@ -31,7 +31,7 @@ import DashboardSetup from "./pages/DashboardSetup";
 import PayeeOnboardingSystem from "./pages/PayeeOnboardingSystem";
 import AdminTimesheetEntry from "./pages/AdminTimesheetEntry";
 import RunPayrollSimple from "./pages/PayrollSummaryCard";
-import { Bell, Settings2Icon, SettingsIcon } from "lucide-react";
+import { Bell, SettingsIcon, UserPlus } from "lucide-react";
 import ReportsWireframe from "./pages/Reports";
 import AccountActivation from "./pages/AccountActivation";
 import MFAScreen from "./pages/MFAScreen";
@@ -40,6 +40,9 @@ import VendorPaymentsWireframe from "./pages/VendorPayments";
 import UnionSetup from "./pages/UnionSetup";
 import SignatureSetup from "./pages/SignatureSetup";
 import BankSetup from "./pages/BankSetup";
+import PayrollHistory from "./pages/PayrollHistory";
+import PayrollDetail from "./pages/PayrollDetail";
+import UnionSetupTable from "./pages/UnionSetupTable";
 
 const drawerWidth = 240;
 
@@ -53,6 +56,11 @@ const App: React.FC = () => {
   };
 
   const navigationItems = [
+    {
+      label: "Registration",
+      icon: <UserPlus />,
+      path: "/company-information", // Changed from "/src/pages/DashboardSetup"
+    },
     {
       label: "Dashboard",
       icon: <DashboardIcon />,
@@ -71,7 +79,7 @@ const App: React.FC = () => {
     {
       label: "Payroll",
       icon: <AttachMoneyIcon />,
-      path: "/payroll", // Changed from "/src/pages/RunPayrollSimple"
+      path: "/vendor-payments", // Changed from "/src/pages/VendorPayments"
     },
     {
       label: "Taxes",
@@ -83,15 +91,11 @@ const App: React.FC = () => {
       icon: <BarChartIcon />,
       path: "/reports", // Changed from "/src/pages/ReportsWireframe"
     },
-    {
-      label: "Run Payroll",
-      icon: <Settings2Icon />,
-      path: "/vendor-payments", // Changed from "/src/pages/VendorPayments"
-    },
+
     {
       label: "Settings",
       icon: <SettingsIcon />,
-      path: "/settings",
+      path: "/union-setup",
     },
   ];
   return (
@@ -194,6 +198,11 @@ const App: React.FC = () => {
           <Route path="/account-activation" element={<AccountActivation />} />
           <Route path="/mfa" element={<MFAScreen />} />
           <Route path="/terms" element={<TermsReview />} />
+          <Route path="/history" element={<PayrollHistory />} />
+          <Route path="/payrolldetails" element={<PayrollDetail />} />
+          <Route path="/unionconfiguration" element={<UnionSetupTable />} />
+
+
           {/* Add a default route */}
         </Routes>
       </Box>

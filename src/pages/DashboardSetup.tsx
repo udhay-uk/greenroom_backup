@@ -67,7 +67,7 @@ const DashboardSetup: React.FC = () => {
       status: "pending",
       description: "Configure union agreements and rates",
       icon: Users,
-      path: "/union-setup",
+      path: "/unionconfiguration",
     },
     {
       id: "bank",
