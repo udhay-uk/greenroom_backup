@@ -1,9 +1,10 @@
-import React, { lazy } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useNavigate,
+  Navigate,
 } from "react-router-dom";
 import {
   AppBar,
@@ -46,58 +47,73 @@ import UnionSetupTable from "./pages/UnionSetupTable";
 
 const drawerWidth = 240;
 
+const navigationItems = [
+  {
+    label: "Registration",
+    icon: <UserPlus />,
+    path: "/company-information", // Changed from "/src/pages/DashboardSetup"
+  },
+  {
+    label: "Dashboard",
+    icon: <DashboardIcon />,
+    path: "/dashboard", // Changed from "/src/pages/DashboardSetup"
+  },
+  {
+    label: "Payees",
+    icon: <PeopleIcon />,
+    path: "/payees", // Changed from "/src/pages/PayeeOnboardingSystem"
+  },
+  {
+    label: "Timesheets",
+    icon: <ScheduleIcon />,
+    path: "/timesheets", // Changed from "/src/pages/AdminTimesheetEntry"
+  },
+  {
+    label: "Payroll",
+    icon: <AttachMoneyIcon />,
+    path: "/vendor-payments", // Changed from "/src/pages/VendorPayments"
+  },
+  {
+    label: "Taxes",
+    icon: <AccountBalanceIcon />,
+    path: "/taxes", // Changed from "/src/pages/AdminTimesheetEntry"
+  },
+  {
+    label: "Reports",
+    icon: <BarChartIcon />,
+    path: "/reports", // Changed from "/src/pages/ReportsWireframe"
+  },
+
+  {
+    label: "Settings",
+    icon: <SettingsIcon />,
+    path: "/union-setup",
+  },
+];
+
 const App: React.FC = () => {
   const navigate = useNavigate();
-  const [selectedTab, setSelectedTab] = React.useState(0);
+  const currentPathname = window.location.pathname;
+  const currentTab = navigationItems.find(
+    (item) => item.path === currentPathname
+  )?.label;
+  const [selectedTab, setSelectedTab] = useState<string>(
+    currentTab || "Registration"
+  );
 
-  const handleNavigation = (index: number, path: string) => {
-    setSelectedTab(index);
-    navigate(path);
+  const handleNavigation = (item: any) => {
+    setSelectedTab(item.label);
   };
 
-  const navigationItems = [
-    {
-      label: "Registration",
-      icon: <UserPlus />,
-      path: "/company-information", // Changed from "/src/pages/DashboardSetup"
-    },
-    {
-      label: "Dashboard",
-      icon: <DashboardIcon />,
-      path: "/dashboard", // Changed from "/src/pages/DashboardSetup"
-    },
-    {
-      label: "Payees",
-      icon: <PeopleIcon />,
-      path: "/payees", // Changed from "/src/pages/PayeeOnboardingSystem"
-    },
-    {
-      label: "Timesheets",
-      icon: <ScheduleIcon />,
-      path: "/timesheets", // Changed from "/src/pages/AdminTimesheetEntry"
-    },
-    {
-      label: "Payroll",
-      icon: <AttachMoneyIcon />,
-      path: "/vendor-payments", // Changed from "/src/pages/VendorPayments"
-    },
-    {
-      label: "Taxes",
-      icon: <AccountBalanceIcon />,
-      path: "/taxes", // Changed from "/src/pages/AdminTimesheetEntry"
-    },
-    {
-      label: "Reports",
-      icon: <BarChartIcon />,
-      path: "/reports", // Changed from "/src/pages/ReportsWireframe"
-    },
+  useEffect(() => {
+    const currentPath = navigationItems.find(
+      (item) => item.label === selectedTab
+    )?.path;
+    if (currentPath) {
+      navigate(currentPath);
+    }
+  }, [selectedTab]);
 
-    {
-      label: "Settings",
-      icon: <SettingsIcon />,
-      path: "/union-setup",
-    },
-  ];
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -149,16 +165,17 @@ const App: React.FC = () => {
       >
         <Toolbar />
         <List>
-          {navigationItems.map((item, index) => (
+          {navigationItems.map((item) => (
             <ListItem
               key={item.label}
               component="div"
-              onClick={() => handleNavigation(index, item.path)}
+              onClick={() => handleNavigation(item)}
               sx={{
-                backgroundColor: selectedTab === index ? "#e3f2fd" : "inherit",
-                color: selectedTab === index ? "#1976d2" : "inherit",
+                backgroundColor:
+                  selectedTab === item.label ? "#e3f2fd" : "inherit",
+                color: selectedTab === item.label ? "#1976d2" : "inherit",
                 "& .MuiListItemIcon-root": {
-                  color: selectedTab === index ? "#1976d2" : "inherit",
+                  color: selectedTab === item.label ? "#1976d2" : "inherit",
                 },
               }}
             >
@@ -181,6 +198,10 @@ const App: React.FC = () => {
       >
         <Toolbar />
         <Routes>
+          <Route
+            path="/"
+            element={<Navigate to="/company-information" replace />}
+          />
           <Route path="/dashboard" element={<DashboardSetup />} />
           <Route path="/payees" element={<PayeeOnboardingSystem />} />
           <Route path="/timesheets" element={<AdminTimesheetEntry />} />
@@ -201,7 +222,6 @@ const App: React.FC = () => {
           <Route path="/history" element={<PayrollHistory />} />
           <Route path="/payrolldetails" element={<PayrollDetail />} />
           <Route path="/unionconfiguration" element={<UnionSetupTable />} />
-
 
           {/* Add a default route */}
         </Routes>
