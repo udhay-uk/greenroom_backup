@@ -140,12 +140,11 @@ const PayrollDetails: React.FC = () => {
     }
   };
 
-  const handleBack = () => {
-    console.log("Go back");
-    // Go back step
-  };
+  // const handleBack = () => {
+  //   console.log("Go back");
+  // };
 
-  const isFormValid = () => Object.keys(errors).length === 0;
+  // const isFormValid = () => Object.keys(errors).length === 0;
 
   const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString(undefined, {
@@ -288,18 +287,18 @@ const PayrollDetails: React.FC = () => {
                 />
 
                 <Stack direction="row" justifyContent="space-between" mt={3}>
-                  <Button
+                  {/* <Button
                     variant="outlined"
                     onClick={handleBack}
                     startIcon={<ChevronLeft size={16} />}
                   >
                     Back
-                  </Button>
+                  </Button> */}
                   <Button
                     variant="contained"
                     type="submit"
                     endIcon={<ChevronRight size={16} />}
-                    disabled={!isFormValid()}
+                    // disabled={!isFormValid()}
                     onClick={handleSubmit} // Call handleSubmit to control component visibility
                   >
                     Next: Terms Review
