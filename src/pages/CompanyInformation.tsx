@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AlertCircle, ChevronRight, Info } from "lucide-react";
+import { AlertCircle,  ChevronRight, Info } from "lucide-react";
 import {
   Box,
   Button,
@@ -132,7 +132,7 @@ const CompanyInformation: React.FC = () => {
     }
   };
 
-  const handleSubmit = (_e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     const newErrors: Partial<FormData> = {};
 
     if (!formData.entityName.trim()) {
@@ -170,13 +170,13 @@ const CompanyInformation: React.FC = () => {
     }
   };
 
-  // const isFormValid = (): boolean => {
-  //   return (
-  //     !!formData.entityName &&
-  //     !!formData.entityType &&
-  //     Object.keys(errors).length === 0
-  //   );
-  // };
+  const isFormValid = (): boolean => {
+    return (
+      !!formData.entityName &&
+      !!formData.entityType &&
+      Object.keys(errors).length === 0
+    );
+  };
 
   return (
     <>
@@ -216,7 +216,11 @@ const CompanyInformation: React.FC = () => {
                 error={!!errors.entityName}
               >
                 <TextField
-                  label={<>Entity Name</>}
+                  label={
+                    <>
+                      Entity Name <span style={{ color: "red" }}>*</span>
+                    </>
+                  }
                   id="entityName"
                   name="entityName"
                   value={formData.entityName}
@@ -225,7 +229,6 @@ const CompanyInformation: React.FC = () => {
                   helperText={errors.entityName}
                   placeholder="Legal business name"
                   fullWidth
-                  required
                 />
               </FormControl>
 
@@ -236,7 +239,7 @@ const CompanyInformation: React.FC = () => {
                 error={!!errors.entityType}
               >
                 <InputLabel id="entityType-label">
-                  Entity Type <span style={{ color: "grey" }}>*</span>
+                  Entity Type <span style={{ color: "red" }}>*</span>
                 </InputLabel>
                 <Select
                   labelId="entityType-label"
@@ -246,7 +249,6 @@ const CompanyInformation: React.FC = () => {
                   onChange={handleInputChange as any}
                   label="Entity Type"
                   error={!!errors.entityType}
-                  required
                 >
                   <MenuItem value="">-- Select Entity Type --</MenuItem>
                   {entityTypes.map((type) => (
@@ -441,7 +443,7 @@ const CompanyInformation: React.FC = () => {
                 type="submit"
                 variant="contained"
                 color="primary"
-                // disabled={!isFormValid()}
+                disabled={!isFormValid()}
                 endIcon={<ChevronRight size={20} />}
                 sx={{ px: 3, py: 1.5 }}
               >
