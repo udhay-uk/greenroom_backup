@@ -31,6 +31,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { ChevronLeft } from "@mui/icons-material";
 
 interface SignatureData {
   file?: File;
@@ -355,16 +356,16 @@ const SignatureSetup: React.FC = () => {
           py: 4,
         }}
       >
-        {/* <Box sx={{ mb: 3 }}>
-          <Button 
-            href="/dashboard" 
-            startIcon={<ChevronLeft size={20} />}
-            sx={{ textTransform: 'none' }}
+       <Box sx={{ mb: 3 }}>
+          <Button
+            variant="text"
+            startIcon={<ChevronLeft fontSize="small" />}
+            sx={{ display: "inline-flex", alignItems: "center", pl: 0 }}
+            onClick={() => window.history.back()}
           >
             Back to Dashboard
           </Button>
-        </Box> */}
-
+        </Box>
         <Card>
           <CardHeader
             avatar={

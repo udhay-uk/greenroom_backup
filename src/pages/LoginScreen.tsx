@@ -16,23 +16,24 @@ import {
   Stack,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import CompanyInformation from "./CompanyInformation";
+import { useNavigate } from "react-router-dom";
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
   borderRadius: theme.shape.borderRadius,
 }));
 
-interface LoginProps {
-  onSuccessfulLogin: () => void;
-}
-const LoginScreen: React.FC<LoginProps> = ({ onSuccessfulLogin }) => {
+const LoginScreen = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<string>("");
   const [passwordError, setPasswordError] = useState<string>("");
-  const [showCompanyInfo, setShowCompanyInfo] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const handleSuccessfulLogin = () => {
+    navigate("/company-information");
+  };
 
   const validateEmail = (email: string): boolean => {
     const re =
@@ -70,125 +71,114 @@ const LoginScreen: React.FC<LoginProps> = ({ onSuccessfulLogin }) => {
     }
   };
 
-  const handleSignUpClick = () => {
-    setShowCompanyInfo(true);
-  };
-
-  const handleBackToLogin = () => {
-    setShowCompanyInfo(false);
-  };
-
   return (
     <Container maxWidth="xs">
       <Box>
-        {showCompanyInfo ? (
-          <CompanyInformation />
-        ) : (
-          <>
-            <Box sx={{ mb: 4, textAlign: "center" }}>
-              <Typography variant="h4" component="h1" gutterBottom>
-                Greenroom Payroll
-              </Typography>
-              <Typography variant="body1" color="text.secondary">
-                Sign in to your account
-              </Typography>
-            </Box>
+        <>
+          <Box sx={{ mb: 4, textAlign: "center" }}>
+            <Typography variant="h4" component="h1" gutterBottom>
+              Greenroom Payroll
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              Sign in to your account
+            </Typography>
+          </Box>
 
-            <StyledPaper elevation={3}>
-              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                <FormControl fullWidth margin="normal">
-                  <TextField
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    value={email}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setEmail(e.target.value)
-                    }
-                    error={!!emailError}
-                    helperText={emailError}
-                    label="Email address"
-                    placeholder="you@example.com"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <Mail size={20} />
-                        </InputAdornment>
-                      ),
-                    }}
-                    fullWidth
+          <StyledPaper elevation={3}>
+            <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+              <FormControl fullWidth margin="normal">
+                <TextField
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={email}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setEmail(e.target.value)
+                  }
+                  error={!!emailError}
+                  helperText={emailError}
+                  label="Email address"
+                  placeholder="you@example.com"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Mail size={20} />
+                      </InputAdornment>
+                    ),
+                  }}
+                  fullWidth
+                />
+              </FormControl>
+
+              <FormControl fullWidth margin="normal">
+                <TextField
+                  id="password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="current-password"
+                  required
+                  value={password}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setPassword(e.target.value)
+                  }
+                  error={!!passwordError}
+                  helperText={passwordError}
+                  label="Password"
+                  placeholder="••••••••"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Lock size={20} />
+                      </InputAdornment>
+                    ),
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={() => setShowPassword(!showPassword)}
+                          edge="end"
+                        >
+                          {showPassword ? (
+                            <EyeOff size={20} />
+                          ) : (
+                            <Eye size={20} />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  fullWidth
+                />
+                <FormHelperText sx={{ fontSize: "0.75rem" }}>
+                  8–24 characters with at least 3 of 4: uppercase, lowercase,
+                  numbers, and special characters
+                </FormHelperText>
+              </FormControl>
+
+              <Stack
+                direction="row"
+                justifyContent="space-between"
+                alignItems="center"
+                spacing={2}
+                sx={{ my: 2 }}
+              >
+                <Box display="flex" alignItems="center">
+                  <Checkbox
+                    id="remember-me"
+                    name="remember-me"
+                    color="primary"
+                    size="small"
                   />
-                </FormControl>
-
-                <FormControl fullWidth margin="normal">
-                  <TextField
-                    id="password"
-                    name="password"
-                    type={showPassword ? "text" : "password"}
-                    autoComplete="current-password"
-                    required
-                    value={password}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setPassword(e.target.value)
-                    }
-                    error={!!passwordError}
-                    helperText={passwordError}
-                    label="Password"
-                    placeholder="••••••••"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <Lock size={20} />
-                        </InputAdornment>
-                      ),
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={() => setShowPassword(!showPassword)}
-                            edge="end"
-                          >
-                            {showPassword ? (
-                              <EyeOff size={20} />
-                            ) : (
-                              <Eye size={20} />
-                            )}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                    fullWidth
-                  />
-                  <FormHelperText sx={{ fontSize: "0.75rem" }}>
-                    8–24 characters with at least 3 of 4: uppercase, lowercase,
-                    numbers, and special characters
-                  </FormHelperText>
-                </FormControl>
-
-                <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  spacing={2}
-                  sx={{ my: 2 }}
-                >
-                  <Box display="flex" alignItems="center">
-                    <Checkbox
-                      id="remember-me"
-                      name="remember-me"
-                      color="primary"
-                      size="small"
-                    />
-                    <Typography variant="body2">Remember me</Typography>
-                  </Box>
-                  <Link href="#" variant="body2" color="primary">
-                    Forgot your password?
-                  </Link>
-                </Stack>
-                <Stack direction="row" spacing={2} sx={{ mt: 3, mb: 2 }}>
-                  {/* <Button
+                  <Typography variant="body2">Remember me</Typography>
+                </Box>
+                <Link href="#" variant="body2" color="primary">
+                  Forgot your password?
+                </Link>
+              </Stack>
+              <Stack direction="row" spacing={2} sx={{ mt: 3, mb: 2 }}>
+                {/* <Button
                     variant="contained"
                     color="primary"
                     size="large"
@@ -197,21 +187,26 @@ const LoginScreen: React.FC<LoginProps> = ({ onSuccessfulLogin }) => {
                   >
                     Sign Up
                   </Button> */}
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    fullWidth
-                    onClick={onSuccessfulLogin}
-                  >
-                    Sign in
-                  </Button>
-                </Stack>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  fullWidth
+                  onClick={() => handleSuccessfulLogin()}
+                >
+                  Sign in
+                </Button>
+              </Stack>
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                Don’t have an account?{" "}
+                <Link onClick={() => navigate("/register")} ml={1}>
+                  Register
+                </Link>
               </Box>
-            </StyledPaper>
-          </>
-        )}
+            </Box>
+          </StyledPaper>
+        </>
       </Box>
     </Container>
   );

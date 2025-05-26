@@ -59,7 +59,7 @@ const DashboardSetup: React.FC = () => {
       status: "completed",
       description: "Basic company details are set up",
       icon: Building,
-      path: "/company-information",
+      path: "/register",
     },
     {
       id: "unions",
@@ -91,7 +91,7 @@ const DashboardSetup: React.FC = () => {
       status: "pending",
       description: "Upload company documents and templates",
       icon: FileText,
-      path: "/src/pages/Documents",
+      path: "",
     },
     {
       id: "settings",
@@ -99,11 +99,10 @@ const DashboardSetup: React.FC = () => {
       status: "pending",
       description: "Configure default payment options",
       icon: Settings,
-      path: "/setup/payment-settings",
+      path: "",
     },
   ];
 
-  // Quick action buttons
   const quickActions: QuickAction[] = [
     { name: "Add Payee", icon: PlusCircle, href: "/" },
     { name: "Setup Bank", icon: CreditCard, href: "/" },
@@ -196,7 +195,6 @@ const DashboardSetup: React.FC = () => {
         </Card>
 
         <Stack direction={{ xs: "column", lg: "row" }} spacing={3}>
-          {/* Main content - Setup Timeline */}
           <Box sx={{ flex: 2 }}>
             <Card>
               <CardHeader
@@ -261,7 +259,6 @@ const DashboardSetup: React.FC = () => {
             </Card>
           </Box>
 
-          {/* Sidebar - Quick Actions */}
           <Box sx={{ flex: 1 }}>
             <Card>
               <CardHeader
@@ -275,7 +272,7 @@ const DashboardSetup: React.FC = () => {
                   <React.Fragment key={action.name}>
                     <ListItem
                       component="a"
-                      href={action.href}
+                      // href={action.href}
                       sx={{ "&:hover": { backgroundColor: "action.hover" } }}
                     >
                       <ListItemAvatar>
@@ -296,7 +293,6 @@ const DashboardSetup: React.FC = () => {
               </List>
             </Card>
 
-            {/* Progress Summary */}
             <Card sx={{ mt: 3 }}>
               <CardHeader
                 title="Setup Progress"

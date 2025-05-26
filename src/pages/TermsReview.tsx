@@ -12,6 +12,7 @@ import {
   Divider,
 } from "@mui/material";
 import { ChevronLeft, Check, Download } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface Agreement {
   id: keyof Agreements;
@@ -87,6 +88,8 @@ const TermsReview: React.FC = () => {
     setAcceptedAgreements((prev) => ({ ...prev, [id]: !prev[id] }));
     if (error) setError("");
   };
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -286,6 +289,7 @@ const TermsReview: React.FC = () => {
                 <Check />
               )
             }
+            onClick={() => navigate("/dashboard")}
           >
             Submit
           </Button>

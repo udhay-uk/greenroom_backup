@@ -7,6 +7,7 @@ import {
   Visibility,
   VisibilityOff,
   Check,
+  ChevronLeft,
 } from "@mui/icons-material";
 import {
   Box,
@@ -34,6 +35,7 @@ import {
   Alert,
   Avatar,
   SelectChangeEvent,
+  Link,
 } from "@mui/material";
 
 interface FormData {
@@ -226,14 +228,16 @@ const BankSetup: React.FC = () => {
           py: 4,
         }}
       >
-        {/* <Box sx={{ mb: 3 }}>
-          <Link
-            sx={{ display: "inline-flex", alignItems: "center" }}
+        <Box sx={{ mb: 3 }}>
+          <Button
+            variant="text"
+            startIcon={<ChevronLeft fontSize="small" />}
+            sx={{ display: "inline-flex", alignItems: "center", pl: 0 }}
+            onClick={() => window.history.back()}
           >
-            <ChevronLeft sx={{ mr: 0.5 }} fontSize="small" />
             Back to Dashboard
-          </Link>
-        </Box> */}
+          </Button>
+        </Box>
 
         <Card>
           <CardHeader

@@ -14,8 +14,10 @@ import {
   Box,
   IconButton,
   Tab,
+  Button,
 } from "@mui/material";
-import { Edit, Delete, Users } from "lucide-react";
+import { Edit, Delete, Users, ChevronLeft, Link } from "lucide-react";
+import { ArrowBack } from "@mui/icons-material";
 
 // Define the type for our union setup data
 interface UnionSetupData {
@@ -81,6 +83,16 @@ const mockUnionSetups: UnionSetupData[] = [
 const UnionSetupTable: React.FC = () => {
   return (
     <Box sx={{ p: 3 }}>
+      <Box sx={{ mb: 3 }}>
+          <Button
+            variant="text"
+            startIcon={<ChevronLeft fontSize="small" />}
+            sx={{ display: "inline-flex", alignItems: "center", pl: 0 }}
+            onClick={() => window.history.back()}
+          >
+            Back to Dashboard
+          </Button>
+        </Box>
       <Typography variant="h4" gutterBottom>
         Union Setups
       </Typography>
