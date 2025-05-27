@@ -65,7 +65,7 @@ const ReportsWireframe: React.FC = () => {
     switch(activeReport) {
       case 'payroll':
         return (
-          <Box>
+          <Stack>
             <Typography variant="subtitle2" gutterBottom>Filters</Typography>
             <Stack spacing={2}>
               <Box>
@@ -117,7 +117,7 @@ const ReportsWireframe: React.FC = () => {
                 </FormControl>
               </Box>
             </Stack>
-          </Box>
+          </Stack>
         );
       case 'union':
         return (
@@ -504,7 +504,7 @@ const ReportsWireframe: React.FC = () => {
   };
   
   return (
-    <Box sx={{ maxWidth: 'xl', mx: 'auto', p: 3, bgcolor: 'grey.50' }}>
+    <Stack >
       <Box mb={3}>
         <Typography variant="h4" fontWeight="bold" gutterBottom>Reports</Typography>
         <Typography variant="body1" color="text.secondary">Generate and view company reports</Typography>
@@ -581,7 +581,7 @@ const ReportsWireframe: React.FC = () => {
           </Paper>
         </Box>
       </Stack>
-    </Box>
+    </Stack>
   );
 };
 

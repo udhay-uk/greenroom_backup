@@ -32,7 +32,7 @@ const LoginScreen = () => {
   const navigate = useNavigate();
 
   const handleSuccessfulLogin = () => {
-    navigate("/company-information");
+    navigate("/dashboard");
   };
 
   const validateEmail = (email: string): boolean => {

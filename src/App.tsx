@@ -28,7 +28,7 @@ import ScheduleIcon from "@mui/icons-material/Schedule";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import BarChartIcon from "@mui/icons-material/BarChart";
-import { Bell, SettingsIcon, UserPlus } from "lucide-react";
+import { Bell, SettingsIcon } from "lucide-react";
 
 // Pages
 import CompanyInformation from "./pages/CompanyInformation";
@@ -49,6 +49,8 @@ import PayrollDetail from "./pages/PayrollDetail";
 import UnionSetupTable from "./pages/UnionSetupTable";
 import LoginScreen from "./pages/LoginScreen";
 import TaxCalculator from "./pages/Taxes";
+import { ReviewsOutlined } from "@mui/icons-material";
+import ReviewPage from "./pages/ReviewPage";
 
 const drawerWidth = 240;
 
@@ -60,6 +62,7 @@ const navigationItems = [
   { label: "Taxes", icon: <AccountBalanceIcon />, path: "/taxes" },
   { label: "Reports", icon: <BarChartIcon />, path: "/reports" },
   { label: "Settings", icon: <SettingsIcon />, path: "/union-setup" },
+  { label: "Review", icon: <ReviewsOutlined />, path: "/review" },
 ];
 
 const App: React.FC = () => {
@@ -194,6 +197,7 @@ const App: React.FC = () => {
           <Route path="/history" element={<PayrollHistory />} />
           <Route path="/payrolldetails" element={<PayrollDetail />} />
           <Route path="/unionconfiguration" element={<UnionSetupTable />} />
+          <Route path="/review" element={<ReviewPage />} />
         </Routes>
       </Box>
     </Box>

@@ -305,7 +305,7 @@ const TaxCalculator: React.FC = () => {
         open={reportSnackbarOpen}
         autoHideDuration={4000}
         onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <Alert onClose={handleSnackbarClose} severity="success" sx={{ width: "100%" }}>
           Report generated successfully!
