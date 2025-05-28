@@ -21,6 +21,11 @@ import {
   CssBaseline,
   Avatar,
   Stack,
+  SelectChangeEvent,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
 } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
@@ -51,6 +56,7 @@ import LoginScreen from "./pages/LoginScreen";
 import TaxCalculator from "./pages/Taxes";
 import { ReviewsOutlined } from "@mui/icons-material";
 import ReviewPage from "./pages/ReviewPage";
+import Settings from "./pages/Settings";
 
 const drawerWidth = 240;
 
@@ -61,8 +67,9 @@ const navigationItems = [
   { label: "Payroll", icon: <AttachMoneyIcon />, path: "/vendor-payments" },
   { label: "Taxes", icon: <AccountBalanceIcon />, path: "/taxes" },
   { label: "Reports", icon: <BarChartIcon />, path: "/reports" },
-  { label: "Settings", icon: <SettingsIcon />, path: "/union-setup" },
+  // { label: "Settings", icon: <SettingsIcon />, path: "/union-setup" },
   { label: "Review", icon: <ReviewsOutlined />, path: "/review" },
+  { label: "Settings", icon: <SettingsIcon />, path: "/settings" },
 ];
 
 const App: React.FC = () => {
@@ -171,6 +178,7 @@ const App: React.FC = () => {
               boxSizing: "border-box",
               backgroundColor: "#f9f9f9",
               borderRight: "1px solid #e0e0e0",
+              mt: 1,
             },
           }}
         >
@@ -232,6 +240,7 @@ const App: React.FC = () => {
           <Route path="/payrolldetails" element={<PayrollDetail />} />
           <Route path="/unionconfiguration" element={<UnionSetupTable />} />
           <Route path="/review" element={<ReviewPage />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </Box>
     </Box>
