@@ -74,6 +74,21 @@ const App: React.FC = () => {
 
   const [selectedTab, setSelectedTab] = useState<string | null>(null);
 
+  const companies = [
+    "TechNova Inc.",
+    "BrightPath LLC",
+    "GreenHarvest Co.",
+    "UrbanEdge Designs",
+    "GlobalTech Solutions",
+    "NextGen Innovations",
+    "EcoWave Enterprises",
+  ];
+  const [selectedCompany, setSelectedCompany] = useState(companies[0]); // default value
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setSelectedCompany(event.target.value);
+  };
+
   useEffect(() => {
     const currentTab = navigationItems.find(
       (item) => item.path === location.pathname
@@ -103,10 +118,29 @@ const App: React.FC = () => {
             borderBottom: "1px solid #e0e0e0",
           }}
         >
-          <Toolbar sx={{ justifyContent: "space-between" }}>
+          <Toolbar sx={{ justifyContent: "space-between", gap: 3, p: 1 }}>
             <Typography variant="h6" noWrap fontWeight="bold">
               Green Room Payroll
             </Typography>
+
+            <Box sx={{ flexGrow: 1 }}>
+              <FormControl sx={{ width: 250 }}>
+                <InputLabel id="company-select-label">Company</InputLabel>
+                <Select
+                  labelId="company-select-label"
+                  id="company-select"
+                  value={selectedCompany}
+                  label="Company"
+                  onChange={handleChange}
+                >
+                  {companies.map((company) => (
+                    <MenuItem key={company} value={company}>
+                      {company}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
 
             <Stack direction="row" alignItems="center">
               <IconButton>
