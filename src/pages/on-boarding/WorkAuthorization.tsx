@@ -39,7 +39,7 @@ const WorkAuthorization: React.FC<WorkAuthorizationProps> = ({ formData, onFormC
         name="name"
         value={`${formData.legalFirstName} ${formData.legalLastName}`}
         margin="normal"
-        disabled
+        
       />
       <TextField
         fullWidth
@@ -47,7 +47,7 @@ const WorkAuthorization: React.FC<WorkAuthorizationProps> = ({ formData, onFormC
         name="email"
         value={formData.email || ''}
         margin="normal"
-        disabled
+        
       />
       <TextField
         fullWidth
@@ -55,7 +55,7 @@ const WorkAuthorization: React.FC<WorkAuthorizationProps> = ({ formData, onFormC
         name="dateOfBirth"
         value={formData.dateOfBirth || ''}
         margin="normal"
-        disabled
+        
       />
       <TextField
         fullWidth
@@ -63,7 +63,7 @@ const WorkAuthorization: React.FC<WorkAuthorizationProps> = ({ formData, onFormC
         name="ssn"
         value={formData.ssn || ''}
         margin="normal"
-        disabled
+        
       />
       <TextField
         fullWidth
@@ -159,9 +159,7 @@ const WorkAuthorization: React.FC<WorkAuthorizationProps> = ({ formData, onFormC
         <Button 
           variant="contained" 
           onClick={onNext}
-          disabled={!formData.phoneNumber || !formData.legalStatus || 
-                   !formData.validationDocument || !formData.documentNumber || 
-                   !formData.issuingAuthority || !formData.documentFile}
+         
         >
           Continue
         </Button>
