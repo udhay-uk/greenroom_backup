@@ -51,6 +51,7 @@ import LoginScreen from "./pages/LoginScreen";
 import TaxCalculator from "./pages/Taxes";
 import { ReviewsOutlined } from "@mui/icons-material";
 import ReviewPage from "./pages/ReviewPage";
+import OnboardingPage from "./pages/on-boarding/OnboardingPage";
 
 const drawerWidth = 240;
 
@@ -63,6 +64,7 @@ const navigationItems = [
   { label: "Reports", icon: <BarChartIcon />, path: "/reports" },
   { label: "Settings", icon: <SettingsIcon />, path: "/union-setup" },
   { label: "Review", icon: <ReviewsOutlined />, path: "/review" },
+  {label:"Onboarding", icon: <PeopleIcon />, path: "/onboarding" },
 ];
 
 const App: React.FC = () => {
@@ -198,6 +200,7 @@ const App: React.FC = () => {
           <Route path="/payrolldetails" element={<PayrollDetail />} />
           <Route path="/unionconfiguration" element={<UnionSetupTable />} />
           <Route path="/review" element={<ReviewPage />} />
+          <Route path="/onboarding" element={<OnboardingPage />} />
         </Routes>
       </Box>
     </Box>
