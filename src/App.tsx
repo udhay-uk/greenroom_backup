@@ -24,7 +24,6 @@ import {
 } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
-import ScheduleIcon from "@mui/icons-material/Schedule";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import BarChartIcon from "@mui/icons-material/BarChart";
@@ -49,7 +48,6 @@ import PayrollDetail from "./pages/PayrollDetail";
 import UnionSetupTable from "./pages/UnionSetupTable";
 import LoginScreen from "./pages/LoginScreen";
 import TaxCalculator from "./pages/Taxes";
-import { ReviewsOutlined } from "@mui/icons-material";
 import ReviewPage from "./pages/ReviewPage";
 
 const drawerWidth = 240;
@@ -57,12 +55,10 @@ const drawerWidth = 240;
 const navigationItems = [
   { label: "Dashboard", icon: <DashboardIcon />, path: "/dashboard" },
   { label: "Payees", icon: <PeopleIcon />, path: "/payees" },
-  { label: "Timesheets", icon: <ScheduleIcon />, path: "/timesheets" },
   { label: "Payroll", icon: <AttachMoneyIcon />, path: "/vendor-payments" },
   { label: "Taxes", icon: <AccountBalanceIcon />, path: "/taxes" },
   { label: "Reports", icon: <BarChartIcon />, path: "/reports" },
   { label: "Settings", icon: <SettingsIcon />, path: "/union-setup" },
-  { label: "Review", icon: <ReviewsOutlined />, path: "/review" },
 ];
 
 const App: React.FC = () => {
